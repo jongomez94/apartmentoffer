@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-cormorant: "Cormorant Garamond", Georgia, serif;
+  --font-outfit: "Outfit", system-ui, sans-serif;
+  --color-cream: #faf8f5;
+  --color-stone-950: #0c0a09;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-cream text-stone-900 antialiased;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+/* Selection */
+::selection {
+  @apply bg-stone-900/20 text-stone-900;
+}
+
+/* Subtle gradient overlays */
+.gradient-hero {
+  background: linear-gradient(
+    to bottom,
+    rgba(12, 10, 9, 0.4) 0%,
+    rgba(12, 10, 9, 0.6) 50%,
+    rgba(12, 10, 9, 0.85) 100%
+  );
+}
+
+.gradient-hero-light {
+  background: linear-gradient(
+    to bottom,
+    rgba(12, 10, 9, 0.2) 0%,
+    rgba(12, 10, 9, 0.5) 100%
+  );
+}
