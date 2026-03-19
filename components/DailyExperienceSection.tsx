@@ -1,30 +1,32 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { dailyExperience } from "@/lib/content";
-
-const times = [
-  {
-    key: "morning",
-    ...dailyExperience.morning,
-    icon: "☀️",
-    gradient: "from-amber-100/80 to-orange-50/80",
-  },
-  {
-    key: "midday",
-    ...dailyExperience.midday,
-    icon: "☁️",
-    gradient: "from-sky-100/80 to-slate-50/80",
-  },
-  {
-    key: "evening",
-    ...dailyExperience.evening,
-    icon: "🌙",
-    gradient: "from-indigo-100/80 to-slate-100/80",
-  },
-] as const;
+import { useContent } from "@/context/ContentContext";
 
 export default function DailyExperienceSection() {
+  const { content } = useContent();
+  const { dailyExperience } = content;
+  const times = [
+    {
+      key: "morning",
+      ...dailyExperience.morning,
+      icon: "☀️",
+      gradient: "from-amber-100/80 to-orange-50/80",
+    },
+    {
+      key: "midday",
+      ...dailyExperience.midday,
+      icon: "☁️",
+      gradient: "from-sky-100/80 to-slate-50/80",
+    },
+    {
+      key: "evening",
+      ...dailyExperience.evening,
+      icon: "🌙",
+      gradient: "from-indigo-100/80 to-slate-100/80",
+    },
+  ] as const;
+
   return (
     <section className="relative overflow-hidden bg-cream py-24 md:py-32 lg:py-40">
       <div className="mx-auto max-w-6xl px-6">

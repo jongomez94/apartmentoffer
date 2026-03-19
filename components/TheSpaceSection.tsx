@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { space } from "@/lib/content";
+import { useContent } from "@/context/ContentContext";
 
 const container = {
   hidden: { opacity: 0 },
@@ -18,6 +18,7 @@ const item = {
 };
 
 export default function TheSpaceSection() {
+  const { content } = useContent();
   return (
     <section className="relative overflow-hidden bg-white py-24 md:py-32 lg:py-40">
       <div className="mx-auto max-w-6xl px-6">
@@ -32,7 +33,7 @@ export default function TheSpaceSection() {
           >
             <Image
               src="/gallery/Portal%20%20%2811%29.jpeg"
-              alt="Your private space at Casa Portal de la Montaña"
+              alt={content.space.title}
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"
@@ -51,16 +52,16 @@ export default function TheSpaceSection() {
               variants={item}
               className="font-serif text-3xl font-medium text-stone-900 md:text-4xl lg:text-5xl"
             >
-              {space.title}
+              {content.space.title}
             </motion.h2>
             <motion.p
               variants={item}
               className="font-sans text-lg leading-relaxed text-stone-600"
             >
-              {space.intro}
+              {content.space.intro}
             </motion.p>
             <ul className="grid gap-3 sm:grid-cols-2">
-              {space.features.map((feature, i) => (
+              {content.space.features.map((feature, i) => (
                 <motion.li
                   key={i}
                   variants={item}

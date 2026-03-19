@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { amenities } from "@/lib/content";
+import { useContent } from "@/context/ContentContext";
 
 const icons: Record<string, React.ReactNode> = {
   utilities: (
@@ -37,6 +37,7 @@ const icons: Record<string, React.ReactNode> = {
 };
 
 export default function AmenitiesSection() {
+  const { content } = useContent();
   return (
     <section className="relative overflow-hidden bg-white py-24 md:py-32 lg:py-40">
       <div className="mx-auto max-w-6xl px-6">
@@ -46,11 +47,11 @@ export default function AmenitiesSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          What&apos;s included
+          {content.amenitiesTitle}
         </motion.h2>
 
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {amenities.map((amenity, i) => (
+          {content.amenities.map((amenity, i) => (
             <motion.div
               key={amenity.title}
               className="flex flex-col items-center rounded-lg border border-stone-200/80 bg-cream/30 p-8 text-center transition-colors hover:border-sage/30 hover:bg-cream/50"

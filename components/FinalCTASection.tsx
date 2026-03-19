@@ -1,11 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { site, finalCta } from "@/lib/content";
-
-const whatsappUrl = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(site.whatsappMessage)}`;
+import { useContent } from "@/context/ContentContext";
 
 export default function FinalCTASection() {
+  const { content } = useContent();
+  const { site, finalCta } = content;
+  const whatsappUrl = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(site.whatsappMessage)}`;
+
   return (
     <section
       id="final-cta"

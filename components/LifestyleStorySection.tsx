@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { lifestyle } from "@/lib/content";
+import { useContent } from "@/context/ContentContext";
 
 const container = {
   hidden: { opacity: 0 },
@@ -17,6 +17,7 @@ const item = {
 };
 
 export default function LifestyleStorySection() {
+  const { content } = useContent();
   return (
     <section
       id="lifestyle"
@@ -34,10 +35,10 @@ export default function LifestyleStorySection() {
             variants={item}
             className="font-serif text-3xl font-medium text-stone-900 md:text-4xl lg:text-5xl"
           >
-            {lifestyle.title}
+            {content.lifestyle.title}
           </motion.h2>
 
-          {lifestyle.paragraphs.map((paragraph, i) => (
+          {content.lifestyle.paragraphs.map((paragraph, i) => (
             <motion.p
               key={i}
               variants={item}
@@ -51,7 +52,7 @@ export default function LifestyleStorySection() {
             variants={item}
             className="flex flex-wrap gap-3 pt-4"
           >
-            {lifestyle.highlights.map((highlight, i) => (
+            {content.lifestyle.highlights.map((highlight, i) => (
               <li key={i}>
                 <span className="inline-block rounded-full border border-stone-300 bg-white/60 px-4 py-2 font-sans text-sm font-medium text-stone-700">
                   {highlight}

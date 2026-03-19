@@ -3,11 +3,12 @@
 import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { gallery } from "@/lib/content";
+import { useContent } from "@/context/ContentContext";
 
 export default function GallerySection() {
+  const { content } = useContent();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const images = gallery.images;
+  const images = content.gallery.images;
   const total = images.length;
 
   const goPrev = useCallback(() => {
@@ -51,7 +52,7 @@ export default function GallerySection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          {gallery.title}
+          {content.gallery.title}
         </motion.h2>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">

@@ -1,9 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { videoSection } from "@/lib/content";
+import { useContent } from "@/context/ContentContext";
 
 export default function VideoSection() {
+  const { content } = useContent();
+  const { videoSection } = content;
   const hasVideo = videoSection.videoUrl && !videoSection.placeholder;
 
   return (
@@ -19,18 +21,19 @@ export default function VideoSection() {
         </motion.h2>
 
         <motion.div
-          className="relative aspect-video overflow-hidden rounded-lg bg-stone-800"
+          className="relative aspect-video w-full overflow-hidden rounded-lg bg-stone-950"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
           {hasVideo ? (
             <video
+              key={videoSection.videoUrl}
               src={videoSection.videoUrl}
               controls
               playsInline
-              className="absolute inset-0 h-full w-full object-contain bg-stone-900"
-              preload="metadata"
+              preload="auto"
+              className="absolute inset-0 h-full w-full object-contain bg-black"
             >
               Your browser does not support the video tag.
             </video>

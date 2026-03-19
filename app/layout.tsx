@@ -1,7 +1,5 @@
-import type { Metadata } from "next";
 import { Cormorant_Garamond, Outfit } from "next/font/google";
 import "./globals.css";
-import WhatsAppButton from "@/components/WhatsAppButton";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -17,12 +15,6 @@ const outfit = Outfit({
   weight: ["300", "400", "500", "600"],
 });
 
-export const metadata: Metadata = {
-  title: "Casa Portal de la Montaña | Mountain Living in San Salvador",
-  description:
-    "A private mountain apartment in a peaceful holistic gated community. Conscious living, nature, and mental clarity in Los Planes de Renderos.",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -32,11 +24,16 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${cormorant.variable} ${outfit.variable}`}
+      suppressHydrationWarning
     >
-      <body className="font-sans min-h-screen">
-        {children}
-        <WhatsAppButton />
-      </body>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `document.documentElement.lang=document.location.pathname.startsWith('/es')?'es':'en'`,
+          }}
+        />
+      </head>
+      <body className="font-sans min-h-screen">{children}</body>
     </html>
   );
 }

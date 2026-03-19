@@ -1,42 +1,36 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { hero } from "@/lib/content";
+import { useContent } from "@/context/ContentContext";
 
 const scrollToContact = () => {
   document.getElementById("final-cta")?.scrollIntoView({ behavior: "smooth" });
 };
 
-const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1920&q=80";
-
 export default function HeroSection() {
+  const { content } = useContent();
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 600], [0, 120]);
-  const opacity = useTransform(scrollY, [0, 400], [0.6, 0.3]);
+  const opacity = useTransform(scrollY, [0, 400], [1, 0.45]);
 
   return (
     <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden">
-      {/* Video / Image placeholder – replace with <video> when asset is ready */}
       <div className="absolute inset-0 bg-stone-900">
         <motion.div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url("${HERO_IMAGE}")`,
-            y,
-            opacity,
-          }}
-        />
-        {/* When video is ready, use:
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 h-full w-full object-cover"
-          src={hero.videoSrc}
-        />
-        */}
+          className="absolute inset-0 h-[115%] w-full -top-[7%]"
+          style={{ y, opacity }}
+        >
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            className="h-full w-full object-cover"
+            src={content.hero.videoSrc}
+            aria-hidden
+          />
+        </motion.div>
       </div>
 
       <div className="gradient-hero absolute inset-0" />
@@ -48,7 +42,7 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
         >
-          {hero.headline}
+          {content.hero.headline}
         </motion.h1>
         <motion.p
           className="mt-6 font-sans text-lg font-light tracking-wide text-white/90 md:text-xl lg:text-2xl"
@@ -56,7 +50,7 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
         >
-          {hero.subheadline}
+          {content.hero.subheadline}
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -68,7 +62,7 @@ export default function HeroSection() {
             onClick={scrollToContact}
             className="group inline-flex items-center gap-2 rounded-sm border border-white/80 bg-white/10 px-8 py-4 font-sans text-sm font-medium uppercase tracking-[0.2em] text-white backdrop-blur-sm transition-all hover:bg-white hover:text-stone-900 focus:outline-none focus:ring-2 focus:ring-white/50"
           >
-            {hero.ctaText}
+            {content.hero.ctaText}
             <span className="transition-transform group-hover:translate-x-1">
               →
             </span>
@@ -88,7 +82,7 @@ export default function HeroSection() {
           aria-label="Scroll to content"
         >
           <span className="font-sans text-xs uppercase tracking-widest">
-            Scroll
+            {content.scrollLabel}
           </span>
           <span className="block h-8 w-px bg-white/50" />
         </a>

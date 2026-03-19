@@ -1,11 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { site } from "@/lib/content";
-
-const whatsappUrl = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(site.whatsappMessage)}`;
+import { useContent } from "@/context/ContentContext";
 
 export default function WhatsAppButton() {
+  const { content } = useContent();
+  const whatsappUrl = `https://wa.me/${content.site.whatsappNumber}?text=${encodeURIComponent(content.site.whatsappMessage)}`;
+
   return (
     <motion.a
       href={whatsappUrl}

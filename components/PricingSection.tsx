@@ -1,9 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { pricing } from "@/lib/content";
+import { useContent } from "@/context/ContentContext";
 
 export default function PricingSection() {
+  const { content } = useContent();
+  const { pricing } = content;
   return (
     <section className="relative overflow-hidden bg-cream py-24 md:py-32 lg:py-40">
       <div className="mx-auto max-w-5xl px-6">
@@ -55,7 +57,7 @@ export default function PricingSection() {
             transition={{ delay: 0.1 }}
           >
             <div className="absolute -top-3 left-6 bg-sage px-3 py-1 font-sans text-xs font-medium uppercase tracking-wider text-white">
-              Most popular
+              {pricing.popularLabel}
             </div>
             <h3 className="font-serif text-2xl font-medium text-stone-900">
               {pricing.option2.name}
