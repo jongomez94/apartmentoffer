@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useContent } from "@/context/ContentContext";
 
@@ -9,6 +10,12 @@ const scrollToContact = () => {
 
 export default function HeroSection() {
   const { content } = useContent();
+  const [videoReady, setVideoReady] = useState(false);
+
+  useEffect(() => {
+    setVideoReady(false);
+  }, [content.hero.videoSrc]);
+
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 600], [0, 120]);
   const opacity = useTransform(scrollY, [0, 400], [1, 0.45]);
@@ -20,16 +27,25 @@ export default function HeroSection() {
           className="absolute inset-0 h-[115%] w-full -top-[7%]"
           style={{ y, opacity }}
         >
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            className="h-full w-full object-cover"
-            src={content.hero.videoSrc}
-            aria-hidden
-          />
+          <motion.div
+            className="absolute inset-0 h-full w-full"
+            initial={false}
+            animate={{ opacity: videoReady ? 1 : 0 }}
+            transition={{ duration: 1.25, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <video
+              key={content.hero.videoSrc}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              className="h-full w-full object-cover"
+              src={content.hero.videoSrc}
+              aria-hidden
+              onLoadedData={() => setVideoReady(true)}
+            />
+          </motion.div>
         </motion.div>
       </div>
 
