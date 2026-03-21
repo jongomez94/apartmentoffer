@@ -35,9 +35,9 @@ export default function TheSpaceSection() {
               src="/gallery/Portal%20%20%2811%29.jpeg"
               alt={content.space.title}
               fill
+              loading="lazy"
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"
-              priority={false}
             />
           </motion.div>
 
