@@ -2,10 +2,12 @@
 
 import { motion } from "framer-motion";
 import { useContent } from "@/context/ContentContext";
+import { googleMapsUrl } from "@/lib/site-location";
 
 export default function LocationSection() {
   const { content } = useContent();
   const { locationContent } = content;
+  const mapUrl = googleMapsUrl(locationContent.coordinates);
   return (
     <section className="relative overflow-hidden bg-cream py-24 md:py-32 lg:py-40">
       <div className="mx-auto max-w-3xl px-6 text-center">
@@ -25,7 +27,7 @@ export default function LocationSection() {
             {locationContent.description}
           </p>
           <a
-            href={`https://www.google.com/maps?q=${locationContent.coordinates.lat},${locationContent.coordinates.lng}`}
+            href={mapUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 font-sans text-sm font-medium text-sage underline-offset-4 hover:underline"

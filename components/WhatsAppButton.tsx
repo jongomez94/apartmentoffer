@@ -1,11 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useContent } from "@/context/ContentContext";
+import { usePathname } from "next/navigation";
+import type { Locale } from "@/lib/i18n/config";
+import { getWhatsAppUrl } from "@/lib/whatsapp-defaults";
 
 export default function WhatsAppButton() {
-  const { content } = useContent();
-  const whatsappUrl = `https://wa.me/${content.site.whatsappNumber}?text=${encodeURIComponent(content.site.whatsappMessage)}`;
+  const pathname = usePathname() || "/en";
+  const locale = (pathname.split("/")[1] || "en") as Locale;
+  const whatsappUrl = getWhatsAppUrl(locale);
 
   return (
     <motion.a
