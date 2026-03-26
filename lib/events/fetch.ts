@@ -1,3 +1,4 @@
+import { unstable_noStore as noStore } from "next/cache";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { Locale } from "@/lib/i18n/config";
 import { defaultLocale, isValidLocale } from "@/lib/i18n/config";
@@ -37,6 +38,7 @@ function mapRow(row: EventRow, locale: Locale): SiteEvent {
 }
 
 export async function fetchPublishedEvents(locale: string): Promise<SiteEvent[] | null> {
+  noStore();
   const supabase = createSupabaseServerClient();
   const safe: Locale = isValidLocale(locale) ? locale : defaultLocale;
   if (!supabase) return null;
@@ -57,6 +59,7 @@ export async function fetchPublishedEventBySlug(
   locale: string,
   slug: string,
 ): Promise<SiteEvent | null> {
+  noStore();
   const supabase = createSupabaseServerClient();
   const safe: Locale = isValidLocale(locale) ? locale : defaultLocale;
   if (!supabase) return null;

@@ -5,6 +5,9 @@ import { getEventsContent } from "@/lib/content/events";
 import EventsView from "@/components/events/EventsView";
 import { fetchPublishedEvents, staticFallbackEvents } from "@/lib/events/fetch";
 
+/** Read Supabase on every request (Vercel/local), not only at build time. */
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata({
   params,
 }: {

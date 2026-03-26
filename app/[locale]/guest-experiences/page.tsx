@@ -5,6 +5,9 @@ import { getGuestStories } from "@/lib/guest-stories";
 import { getGuestExperiencesPageCopy } from "@/lib/content/guest-experiences-meta";
 import GuestExperiencesView from "@/components/guest-experiences/GuestExperiencesView";
 
+/** Read Supabase on every request (Vercel/local), not only at build time. */
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata({
   params,
 }: {

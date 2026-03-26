@@ -1,3 +1,4 @@
+import { unstable_noStore as noStore } from "next/cache";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { GuestStory } from "./types";
 
@@ -49,6 +50,7 @@ function mapRow(row: GuestStoryRow): GuestStory {
 }
 
 export async function fetchGuestStoriesFromSupabase(locale: string): Promise<GuestStory[] | null> {
+  noStore();
   const supabase = createSupabaseServerClient();
   if (!supabase) return null;
 

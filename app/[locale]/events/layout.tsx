@@ -2,6 +2,8 @@ import EventNavProvider from "@/components/events/EventNavProvider";
 import { isValidLocale } from "@/lib/i18n/config";
 import { defaultLocale } from "@/lib/i18n/config";
 
+export const dynamic = "force-dynamic";
+
 export default async function EventsLayout({
   children,
   params,
