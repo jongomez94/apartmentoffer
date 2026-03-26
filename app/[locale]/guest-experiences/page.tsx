@@ -25,7 +25,7 @@ export default async function GuestExperiencesPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const stories = getGuestStories(locale);
+  const stories = await getGuestStories(locale);
 
   return <GuestExperiencesView stories={stories} locale={locale as Locale} />;
 }

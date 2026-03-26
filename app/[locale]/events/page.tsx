@@ -3,6 +3,7 @@ import { isValidLocale } from "@/lib/i18n/config";
 import type { Locale } from "@/lib/i18n/config";
 import { getEventsContent } from "@/lib/content/events";
 import EventsView from "@/components/events/EventsView";
+import { fetchPublishedEvents, staticFallbackEvents } from "@/lib/events/fetch";
 
 export async function generateMetadata({
   params,
@@ -25,6 +26,13 @@ export default async function EventsPage({
 }) {
   const { locale } = await params;
   const content = getEventsContent(locale);
+  const safe = locale as Locale;
+  const fromDb = await fetchPublishedEvents(locale);
+  const hasDbRows = fromDb !== null && fromDb.length > 0;
+  const events = hasDbRows ? fromDb : staticFallbackEvents(content, safe);
+  const calendarEnabled = hasDbRows;
 
-  return <EventsView content={content} locale={locale as Locale} />;
+  return (
+    <EventsView content={content} locale={safe} events={events} calendarEnabled={calendarEnabled} />
+  );
 }

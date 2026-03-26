@@ -36,6 +36,7 @@ export function paths(locale: Locale) {
     apartment: `${l}/apartment`,
     gardenStudio: `${l}/garden-studio`,
     events: `${l}/events`,
+    event: (slug: string) => `${l}/events/${encodeURIComponent(slug)}`,
     guestExperiences: `${l}/guest-experiences`,
   };
 }

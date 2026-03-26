@@ -73,7 +73,9 @@ export default function GuestExperiencesView({
                     dateTime={story.publishedAt}
                     className="mt-4 block font-sans text-xs text-stone-400"
                   >
-                    {story.publishedAt}
+                    {new Intl.DateTimeFormat(locale === "es" ? "es-SV" : "en-US", {
+                      dateStyle: "medium",
+                    }).format(new Date(story.publishedAt))}
                   </time>
                 </div>
                 {story.imageSrc && (
