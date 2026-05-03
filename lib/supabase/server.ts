@@ -1,14 +1,14 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import { getSupabasePublicEnv } from "./env";
 
 /**
- * Server-side Supabase client (anon key + RLS). Use only in Server Components,
- * Route Handlers, or server actions — never expose the service role here.
+ * Server-side Supabase client **without** user cookies (anonymous reads).
+ * Use for public pages where no session is required.
  */
 export function createSupabaseServerClient(): SupabaseClient | null {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-  if (!url || !key) return null;
-  return createClient(url, key, {
+  const env = getSupabasePublicEnv();
+  if (!env) return null;
+  return createClient(env.url, env.anonKey, {
     auth: { persistSession: false, autoRefreshToken: false },
   });
 }

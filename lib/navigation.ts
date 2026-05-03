@@ -38,5 +38,8 @@ export function paths(locale: Locale) {
     events: `${l}/events`,
     event: (slug: string) => `${l}/events/${encodeURIComponent(slug)}`,
     guestExperiences: `${l}/guest-experiences`,
+    admin: `${l}/admin`,
+    adminLogin: `${l}/admin/login`,
+    adminDashboard: `${l}/admin/dashboard`,
   };
 }

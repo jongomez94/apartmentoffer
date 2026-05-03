@@ -4,13 +4,19 @@ import {
   getLocaleFromAcceptLanguage,
   isValidLocale,
 } from "./lib/i18n/config";
+import { updateSupabaseSession } from "./lib/supabase/middleware";
 
 const LOCALE_COOKIE = "NEXT_LOCALE";
 
-export function middleware(request: NextRequest) {
+function copyCookies(from: NextResponse, to: NextResponse) {
+  from.cookies.getAll().forEach((c) => {
+    to.cookies.set(c.name, c.value);
+  });
+}
+
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Skip static files and API routes
   if (
     pathname.startsWith("/_next") ||
     pathname.startsWith("/api") ||
@@ -19,10 +25,11 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  const supabaseResponse = await updateSupabaseSession(request);
+
   const pathnameLocale = pathname.slice(1, 3);
   const hasLocaleInPath = isValidLocale(pathnameLocale) && pathname.startsWith(`/${pathnameLocale}`);
 
-  // If visiting root /
   if (pathname === "/" || pathname === "") {
     const cookieLocale = request.cookies.get(LOCALE_COOKIE)?.value;
     const acceptLanguage = request.headers.get("accept-language");
@@ -31,27 +38,23 @@ export function middleware(request: NextRequest) {
       getLocaleFromAcceptLanguage(acceptLanguage) ??
       defaultLocale;
 
-    const response = NextResponse.redirect(
-      new URL(`/${preferredLocale}`, request.url)
-    );
-    response.cookies.set(LOCALE_COOKIE, preferredLocale, {
-      path: "/",
-      maxAge: 60 * 60 * 24 * 365, // 1 year
-    });
-    return response;
-  }
-
-  // If path has valid locale, set cookie and continue
-  if (hasLocaleInPath && isValidLocale(pathnameLocale)) {
-    const response = NextResponse.next();
-    response.cookies.set(LOCALE_COOKIE, pathnameLocale, {
+    const redirect = NextResponse.redirect(new URL(`/${preferredLocale}`, request.url));
+    copyCookies(supabaseResponse, redirect);
+    redirect.cookies.set(LOCALE_COOKIE, preferredLocale, {
       path: "/",
       maxAge: 60 * 60 * 24 * 365,
     });
-    return response;
+    return redirect;
   }
 
-  return NextResponse.next();
+  if (hasLocaleInPath && isValidLocale(pathnameLocale)) {
+    supabaseResponse.cookies.set(LOCALE_COOKIE, pathnameLocale, {
+      path: "/",
+      maxAge: 60 * 60 * 24 * 365,
+    });
+  }
+
+  return supabaseResponse;
 }
 
 export const config = {
