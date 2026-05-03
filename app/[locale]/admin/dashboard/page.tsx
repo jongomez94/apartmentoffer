@@ -23,11 +23,17 @@ export async function generateMetadata({
 
 export default async function AdminDashboardPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ locale: string }>;
+  searchParams: Promise<{ eventsLocale?: string; storiesLocale?: string }>;
 }) {
   const { locale } = await params;
   if (!isValidLocale(locale)) redirect("/en/admin/login");
+
+  const sp = await searchParams;
+  const eventsLocale: Locale = sp.eventsLocale === "es" ? "es" : "en";
+  const storiesLocale: Locale = sp.storiesLocale === "es" ? "es" : "en";
 
   const supabase = await createSupabaseServerCookieClient();
   if (!supabase) redirect(`/${locale}`);
@@ -40,16 +46,20 @@ export default async function AdminDashboardPage({
   const { data: events, error: evErr } = await supabase
     .from("events")
     .select("*")
+    .eq("locale", eventsLocale)
     .order("starts_at", { ascending: true });
 
   const { data: stories, error: stErr } = await supabase
     .from("guest_stories")
     .select("*")
+    .eq("locale", storiesLocale)
     .order("published_at", { ascending: false });
 
   return (
     <AdminDashboard
       locale={locale as Locale}
+      eventsContentLocale={eventsLocale}
+      storiesContentLocale={storiesLocale}
       userEmail={user.email ?? ""}
       events={(events ?? []) as AdminEventRow[]}
       stories={(stories ?? []) as AdminGuestStoryRow[]}

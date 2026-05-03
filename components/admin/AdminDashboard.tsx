@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import type { Locale } from "@/lib/i18n/config";
 import { paths } from "@/lib/navigation";
 import type { AdminEventRow, AdminGuestStoryRow } from "@/lib/admin/types";
@@ -15,12 +15,12 @@ function toDatetimeLocalValue(iso: string): string {
   return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
 }
 
-function emptyEventDefaults(): Partial<AdminEventRow> {
+function emptyEventDefaults(contentLocale: Locale): Partial<AdminEventRow> {
   const now = new Date();
   return {
     id: "",
     slug: "",
-    locale: "en",
+    locale: contentLocale,
     title: "",
     summary: "",
     description: "",
@@ -33,12 +33,12 @@ function emptyEventDefaults(): Partial<AdminEventRow> {
   };
 }
 
-function emptyStoryDefaults(): Partial<AdminGuestStoryRow> {
+function emptyStoryDefaults(contentLocale: Locale): Partial<AdminGuestStoryRow> {
   const now = new Date();
   return {
     id: "",
     slug: "",
-    locale: "en",
+    locale: contentLocale,
     guest_name: "",
     subtitle: "",
     headline: "",
@@ -58,25 +58,47 @@ const labelClass = "block font-sans text-xs font-medium uppercase tracking-wider
 
 export default function AdminDashboard({
   locale,
+  eventsContentLocale,
+  storiesContentLocale,
   userEmail,
   events,
   stories,
   loadError,
 }: {
   locale: Locale;
+  eventsContentLocale: Locale;
+  storiesContentLocale: Locale;
   userEmail: string;
   events: AdminEventRow[];
   stories: AdminGuestStoryRow[];
   loadError: string | null;
 }) {
   const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const p = paths(locale);
+
+  function pushDashboardQuery(updates: Record<string, string>) {
+    const qs = new URLSearchParams(searchParams.toString());
+    for (const [key, value] of Object.entries(updates)) {
+      qs.set(key, value);
+    }
+    router.push(`${pathname}?${qs.toString()}`);
+  }
   const [tab, setTab] = useState<"events" | "stories">("events");
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const [eventDraft, setEventDraft] = useState<Partial<AdminEventRow>>(() => emptyEventDefaults());
-  const [storyDraft, setStoryDraft] = useState<Partial<AdminGuestStoryRow>>(() => emptyStoryDefaults());
+  const [eventDraft, setEventDraft] = useState<Partial<AdminEventRow>>(() => emptyEventDefaults(eventsContentLocale));
+  const [storyDraft, setStoryDraft] = useState<Partial<AdminGuestStoryRow>>(() => emptyStoryDefaults(storiesContentLocale));
+
+  useEffect(() => {
+    setEventDraft((d) => (d.id ? d : emptyEventDefaults(eventsContentLocale)));
+  }, [eventsContentLocale]);
+
+  useEffect(() => {
+    setStoryDraft((d) => (d.id ? d : emptyStoryDefaults(storiesContentLocale)));
+  }, [storiesContentLocale]);
 
   function refresh() {
     router.refresh();
@@ -93,7 +115,7 @@ export default function AdminDashboard({
       return;
     }
     setMessage(locale === "es" ? "Evento guardado." : "Event saved.");
-    setEventDraft(emptyEventDefaults());
+    setEventDraft(emptyEventDefaults(eventsContentLocale));
     refresh();
   }
 
@@ -108,7 +130,7 @@ export default function AdminDashboard({
       return;
     }
     setMessage(locale === "es" ? "Historia guardada." : "Story saved.");
-    setStoryDraft(emptyStoryDefaults());
+    setStoryDraft(emptyStoryDefaults(storiesContentLocale));
     refresh();
   }
 
@@ -221,6 +243,31 @@ export default function AdminDashboard({
             <h2 className="font-serif text-2xl font-medium text-stone-900">
               {locale === "es" ? "Todos los eventos" : "All events"}
             </h2>
+            <div className="mt-3 max-w-md">
+              <label className={labelClass}>
+                {locale === "es" ? "Idioma del listado" : "List language"}
+              </label>
+              <select
+                className={`${inputClass} mt-1`}
+                value={eventsContentLocale}
+                onChange={(e) => {
+                  const v = e.target.value === "es" ? "es" : "en";
+                  pushDashboardQuery({ eventsLocale: v });
+                }}
+              >
+                <option value="en">
+                  {locale === "es" ? "Editando contenido en inglés" : "Editing content in English"}
+                </option>
+                <option value="es">
+                  {locale === "es" ? "Editando contenido en español" : "Editing content in Spanish"}
+                </option>
+              </select>
+              <p className="mt-1.5 font-sans text-xs text-stone-500">
+                {locale === "es"
+                  ? "Solo se cargan eventos con este idioma desde la base de datos."
+                  : "Only events with this language are loaded from the database."}
+              </p>
+            </div>
             <div className="mt-4 overflow-x-auto rounded-lg border border-stone-200 bg-white">
               <table className="min-w-full border-collapse text-left font-sans text-sm">
                 <thead className="bg-stone-50 text-xs uppercase tracking-wider text-stone-500">
@@ -351,7 +398,7 @@ export default function AdminDashboard({
                 <button
                   type="button"
                   className="rounded-sm border border-stone-300 bg-white px-5 py-2 font-sans text-sm text-stone-700 hover:bg-stone-50"
-                  onClick={() => setEventDraft(emptyEventDefaults())}
+                  onClick={() => setEventDraft(emptyEventDefaults(eventsContentLocale))}
                 >
                   {locale === "es" ? "Nuevo (limpiar)" : "New (clear)"}
                 </button>
@@ -365,6 +412,31 @@ export default function AdminDashboard({
             <h2 className="font-serif text-2xl font-medium text-stone-900">
               {locale === "es" ? "Todas las historias" : "All guest stories"}
             </h2>
+            <div className="mt-3 max-w-md">
+              <label className={labelClass}>
+                {locale === "es" ? "Idioma del listado" : "List language"}
+              </label>
+              <select
+                className={`${inputClass} mt-1`}
+                value={storiesContentLocale}
+                onChange={(e) => {
+                  const v = e.target.value === "es" ? "es" : "en";
+                  pushDashboardQuery({ storiesLocale: v });
+                }}
+              >
+                <option value="en">
+                  {locale === "es" ? "Editando contenido en inglés" : "Editing content in English"}
+                </option>
+                <option value="es">
+                  {locale === "es" ? "Editando contenido en español" : "Editing content in Spanish"}
+                </option>
+              </select>
+              <p className="mt-1.5 font-sans text-xs text-stone-500">
+                {locale === "es"
+                  ? "Solo se cargan historias con este idioma desde la base de datos."
+                  : "Only guest stories with this language are loaded from the database."}
+              </p>
+            </div>
             <div className="mt-4 overflow-x-auto rounded-lg border border-stone-200 bg-white">
               <table className="min-w-full border-collapse text-left font-sans text-sm">
                 <thead className="bg-stone-50 text-xs uppercase tracking-wider text-stone-500">
@@ -496,7 +568,7 @@ export default function AdminDashboard({
                 <button
                   type="button"
                   className="rounded-sm border border-stone-300 bg-white px-5 py-2 font-sans text-sm text-stone-700 hover:bg-stone-50"
-                  onClick={() => setStoryDraft(emptyStoryDefaults())}
+                  onClick={() => setStoryDraft(emptyStoryDefaults(storiesContentLocale))}
                 >
                   {locale === "es" ? "Nueva (limpiar)" : "New (clear)"}
                 </button>
