@@ -4,6 +4,7 @@ import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useContent } from "@/context/ContentContext";
+import { withLifeAtPortalCache } from "@/lib/content/life-at-the-portal";
 
 export default function GallerySection() {
   const { content } = useContent();
@@ -69,7 +70,7 @@ export default function GallerySection() {
               aria-label={`View image ${i + 1} of ${total}: ${image.alt}`}
             >
               <Image
-                src={image.src}
+                src={withLifeAtPortalCache(image.src)}
                 alt={image.alt}
                 fill
                 loading="lazy"
@@ -127,7 +128,7 @@ export default function GallerySection() {
               onClick={(e) => e.stopPropagation()}
             >
               <Image
-                src={images[selectedIndex].src}
+                src={withLifeAtPortalCache(images[selectedIndex].src)}
                 alt={images[selectedIndex].alt}
                 fill
                 className="object-contain"

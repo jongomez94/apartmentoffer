@@ -7,6 +7,7 @@ import type { GardenStudioContent } from "@/lib/content/garden-studio";
 import type { Locale } from "@/lib/i18n/config";
 import { paths } from "@/lib/navigation";
 import { getWhatsAppUrl } from "@/lib/whatsapp-defaults";
+import { withGardenStudioCache } from "@/lib/content/garden-studio-assets";
 import { googleMapsUrl, PORTAL_COORDINATES } from "@/lib/site-location";
 
 const container = {
@@ -34,7 +35,7 @@ export default function GardenStudioView({
       <section className="relative min-h-[70vh] overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src={content.hero.imageSrc}
+            src={withGardenStudioCache(content.hero.imageSrc)}
             alt={content.hero.headline}
             fill
             className="object-cover"
@@ -112,7 +113,7 @@ export default function GardenStudioView({
             viewport={{ once: true }}
           >
             <Image
-              src={content.space.imageSrc}
+              src={withGardenStudioCache(content.space.imageSrc)}
               alt={content.space.title}
               fill
               className="object-cover"
@@ -172,7 +173,7 @@ export default function GardenStudioView({
           <h2 className="mb-12 text-center font-serif text-3xl font-medium text-stone-900">
             {content.gallery.title}
           </h2>
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {content.gallery.images.map((img, i) => (
               <motion.div
                 key={img.src}
@@ -183,7 +184,7 @@ export default function GardenStudioView({
                 transition={{ delay: i * 0.05 }}
               >
                 <Image
-                  src={img.src}
+                  src={withGardenStudioCache(img.src)}
                   alt={img.alt}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"

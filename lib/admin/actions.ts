@@ -2,6 +2,12 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import {
+  adminAccessError,
+  isAdminUser,
+  noRowDeletedError,
+  noRowUpdatedError,
+} from "@/lib/admin/access";
 import { createSupabaseServerCookieClient } from "@/lib/supabase/server-cookies";
 function adminDashboardPath(locale: string) {
   return `/${locale}/admin/dashboard`;
@@ -42,6 +48,9 @@ export async function upsertEvent(locale: string, _prev: ActionResult | undefine
 
   const { data: userRes } = await supabase.auth.getUser();
   if (!userRes.user) return { ok: false, error: "Not signed in" };
+  if (!(await isAdminUser(supabase, userRes.user.id))) {
+    return { ok: false, error: adminAccessError(locale) };
+  }
 
   const id = String(formData.get("id") ?? "").trim() || null;
   const slug = String(formData.get("slug") ?? "").trim();
@@ -66,11 +75,13 @@ export async function upsertEvent(locale: string, _prev: ActionResult | undefine
   if (!payload.starts_at) return { ok: false, error: "starts_at is required" };
 
   if (id) {
-    const { error } = await supabase.from("events").update(payload).eq("id", id);
+    const { data, error } = await supabase.from("events").update(payload).eq("id", id).select("id").maybeSingle();
     if (error) return { ok: false, error: error.message };
+    if (!data) return { ok: false, error: noRowUpdatedError(locale, "event") };
   } else {
-    const { error } = await supabase.from("events").insert(payload);
+    const { data, error } = await supabase.from("events").insert(payload).select("id").single();
     if (error) return { ok: false, error: error.message };
+    if (!data) return { ok: false, error: noRowUpdatedError(locale, "event") };
   }
 
   revalidatePath(adminDashboardPath(locale));
@@ -82,9 +93,13 @@ export async function deleteEvent(locale: string, eventId: string): Promise<Acti
   if (!supabase) return { ok: false, error: "Supabase not configured" };
   const { data: userRes } = await supabase.auth.getUser();
   if (!userRes.user) return { ok: false, error: "Not signed in" };
+  if (!(await isAdminUser(supabase, userRes.user.id))) {
+    return { ok: false, error: adminAccessError(locale) };
+  }
 
-  const { error } = await supabase.from("events").delete().eq("id", eventId);
+  const { data, error } = await supabase.from("events").delete().eq("id", eventId).select("id").maybeSingle();
   if (error) return { ok: false, error: error.message };
+  if (!data) return { ok: false, error: noRowDeletedError(locale, "event") };
   revalidatePath(adminDashboardPath(locale));
   return { ok: true };
 }
@@ -95,6 +110,9 @@ export async function upsertGuestStory(locale: string, _prev: ActionResult | und
 
   const { data: userRes } = await supabase.auth.getUser();
   if (!userRes.user) return { ok: false, error: "Not signed in" };
+  if (!(await isAdminUser(supabase, userRes.user.id))) {
+    return { ok: false, error: adminAccessError(locale) };
+  }
 
   const id = String(formData.get("id") ?? "").trim() || null;
   const slug = String(formData.get("slug") ?? "").trim();
@@ -125,11 +143,18 @@ export async function upsertGuestStory(locale: string, _prev: ActionResult | und
   };
 
   if (id) {
-    const { error } = await supabase.from("guest_stories").update(payload).eq("id", id);
+    const { data, error } = await supabase
+      .from("guest_stories")
+      .update(payload)
+      .eq("id", id)
+      .select("id")
+      .maybeSingle();
     if (error) return { ok: false, error: error.message };
+    if (!data) return { ok: false, error: noRowUpdatedError(locale, "story") };
   } else {
-    const { error } = await supabase.from("guest_stories").insert(payload);
+    const { data, error } = await supabase.from("guest_stories").insert(payload).select("id").single();
     if (error) return { ok: false, error: error.message };
+    if (!data) return { ok: false, error: noRowUpdatedError(locale, "story") };
   }
 
   revalidatePath(adminDashboardPath(locale));
@@ -141,9 +166,13 @@ export async function deleteGuestStory(locale: string, storyId: string): Promise
   if (!supabase) return { ok: false, error: "Supabase not configured" };
   const { data: userRes } = await supabase.auth.getUser();
   if (!userRes.user) return { ok: false, error: "Not signed in" };
+  if (!(await isAdminUser(supabase, userRes.user.id))) {
+    return { ok: false, error: adminAccessError(locale) };
+  }
 
-  const { error } = await supabase.from("guest_stories").delete().eq("id", storyId);
+  const { data, error } = await supabase.from("guest_stories").delete().eq("id", storyId).select("id").maybeSingle();
   if (error) return { ok: false, error: error.message };
+  if (!data) return { ok: false, error: noRowDeletedError(locale, "story") };
   revalidatePath(adminDashboardPath(locale));
   return { ok: true };
 }

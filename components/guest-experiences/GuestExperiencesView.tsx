@@ -7,6 +7,7 @@ import type { GuestStory } from "@/lib/guest-stories";
 import type { Locale } from "@/lib/i18n/config";
 import { paths } from "@/lib/navigation";
 import { getGuestExperiencesPageCopy } from "@/lib/content/guest-experiences-meta";
+import { withLifeAtPortalCache } from "@/lib/content/life-at-the-portal";
 
 export default function GuestExperiencesView({
   stories,
@@ -81,7 +82,7 @@ export default function GuestExperiencesView({
                 {story.imageSrc && (
                   <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-stone-200 md:aspect-square md:max-w-[280px] md:justify-self-end">
                     <Image
-                      src={story.imageSrc}
+                      src={withLifeAtPortalCache(story.imageSrc)}
                       alt={story.imageAlt ?? story.headline}
                       fill
                       className="object-cover"

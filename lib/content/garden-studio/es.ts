@@ -9,7 +9,7 @@ export const gardenStudioEs: GardenStudioContent = {
     subheadline:
       "Un espacio creativo privado en el jardín—pensado para concentrarte, restaurarte y vivir días más lentos.",
     ctaText: "Agendar visita",
-    imageSrc: "/gallery/Portal%20%20%288%29.jpeg",
+    imageSrc: "/gardenstudio/1.jpeg",
   },
   story: {
     title: "Tu rincón en el jardín",
@@ -28,7 +28,7 @@ export const gardenStudioEs: GardenStudioContent = {
   space: {
     title: "El espacio",
     intro:
-      "Acabados, distribución y material aquí son temporales mientras preparamos fotografía y video dedicados para este anuncio.",
+      "Un estudio dedicado en el jardín—luz natural, espacio para trabajar y descansar, y la misma energía de santuario que el resto de la propiedad.",
     features: [
       "Estudio dedicado en la zona del jardín",
       "Luz natural y cercanía al verde",
@@ -36,7 +36,7 @@ export const gardenStudioEs: GardenStudioContent = {
       "Acceso a jardines y amenidades comunitarias",
       "Comidas opcionales y rutas wellness, según paquete",
     ],
-    imageSrc: "/gallery/Portal%20%20%285%29.jpeg",
+    imageSrc: "/gardenstudio/2.jpeg",
   },
   videoSection: {
     title: "Vive el estudio",
@@ -44,12 +44,20 @@ export const gardenStudioEs: GardenStudioContent = {
     placeholder: true,
   },
   gallery: {
-    title: "Jardín y atmósfera",
+    title: "Garden Studio look",
     images: [
-      { src: "/gallery/Portal%20%20%285%29.jpeg", alt: "Vegetación del jardín" },
-      { src: "/gallery/Portal%20%20%2812%29.jpeg", alt: "Inmersión en la naturaleza" },
-      { src: "/gallery/Portal%20%20%282%29.jpeg", alt: "Luz de montaña" },
-      { src: "/gallery/Portal%20%20%284%29.jpeg", alt: "Entorno tranquilo" },
+      { src: "/gardenstudio/1.jpeg", alt: "Estudio del Jardín" },
+      { src: "/gardenstudio/2.jpeg", alt: "Interior del estudio" },
+      { src: "/gardenstudio/3.jpeg", alt: "Área de living del estudio" },
+      { src: "/gardenstudio/4.jpeg", alt: "Detalle del estudio" },
+      { src: "/gardenstudio/5.jpeg", alt: "Jardín y vegetación" },
+      { src: "/gardenstudio/6.jpeg", alt: "Luz natural en el estudio" },
+      { src: "/gardenstudio/7.jpeg", alt: "Espacio de trabajo" },
+      { src: "/gardenstudio/8.jpeg", alt: "Entorno tranquilo del jardín" },
+      { src: "/gardenstudio/9.jpeg", alt: "Atmósfera del estudio" },
+      { src: "/gardenstudio/10.jpeg", alt: "Vistas del estudio" },
+      { src: "/gardenstudio/11.jpeg", alt: "Espacio exterior del jardín" },
+      { src: "/gardenstudio/12.jpeg", alt: "Alrededores del estudio" },
     ],
   },
   locationContent: {

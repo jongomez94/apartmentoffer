@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useContent } from "@/context/ContentContext";
+import { withLifeAtPortalCache } from "@/lib/content/life-at-the-portal";
 
 const container = {
   hidden: { opacity: 0 },
@@ -32,7 +33,7 @@ export default function TheSpaceSection() {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
             <Image
-              src="/gallery/Portal%20%20%2811%29.jpeg"
+              src={withLifeAtPortalCache("/life-at-the-portal/11.jpeg")}
               alt={content.space.title}
               fill
               loading="lazy"

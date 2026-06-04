@@ -3,8 +3,9 @@ import { redirect } from "next/navigation";
 import AdminDashboard from "@/components/admin/AdminDashboard";
 import { isValidLocale } from "@/lib/i18n/config";
 import type { Locale } from "@/lib/i18n/config";
-import { createSupabaseServerCookieClient } from "@/lib/supabase/server-cookies";
+import { isAdminUser } from "@/lib/admin/access";
 import type { AdminEventRow, AdminGuestStoryRow } from "@/lib/admin/types";
+import { createSupabaseServerCookieClient } from "@/lib/supabase/server-cookies";
 
 export const dynamic = "force-dynamic";
 
@@ -43,6 +44,8 @@ export default async function AdminDashboardPage({
   } = await supabase.auth.getUser();
   if (!user) redirect(`/${locale}/admin/login`);
 
+  const hasAdminWrite = await isAdminUser(supabase, user.id);
+
   const { data: events, error: evErr } = await supabase
     .from("events")
     .select("*")
@@ -61,6 +64,7 @@ export default async function AdminDashboardPage({
       eventsContentLocale={eventsLocale}
       storiesContentLocale={storiesLocale}
       userEmail={user.email ?? ""}
+      hasAdminWrite={hasAdminWrite}
       events={(events ?? []) as AdminEventRow[]}
       stories={(stories ?? []) as AdminGuestStoryRow[]}
       loadError={

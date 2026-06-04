@@ -61,6 +61,7 @@ export default function AdminDashboard({
   eventsContentLocale,
   storiesContentLocale,
   userEmail,
+  hasAdminWrite,
   events,
   stories,
   loadError,
@@ -69,6 +70,7 @@ export default function AdminDashboard({
   eventsContentLocale: Locale;
   storiesContentLocale: Locale;
   userEmail: string;
+  hasAdminWrite: boolean;
   events: AdminEventRow[];
   stories: AdminGuestStoryRow[];
   loadError: string | null;
@@ -198,6 +200,19 @@ export default function AdminDashboard({
           </form>
         </div>
       </header>
+
+      {!hasAdminWrite ? (
+        <div className="mt-6 rounded-sm border border-red-200 bg-red-50 px-4 py-3 font-sans text-sm text-red-950">
+          <p className="font-medium">
+            {locale === "es" ? "Sin permiso de escritura en la base de datos" : "No database write permission"}
+          </p>
+          <p className="mt-1 text-red-900/90">
+            {locale === "es"
+              ? "Has iniciado sesión, pero tu usuario no está en public.admin_users. Los cambios no se guardarán hasta que añadas tu UUID de Supabase Auth (ver supabase/admin-rls.sql)."
+              : "You are signed in, but your user is not in public.admin_users. Changes will not save until you add your Supabase Auth UUID (see supabase/admin-rls.sql)."}
+          </p>
+        </div>
+      ) : null}
 
       {loadError ? (
         <div className="mt-6 rounded-sm border border-amber-200 bg-amber-50 px-4 py-3 font-sans text-sm text-amber-950">

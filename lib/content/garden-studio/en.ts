@@ -1,6 +1,5 @@
 import type { GardenStudioContent } from "./types";
 
-/** Placeholder imagery reuses gallery assets until you add studio-specific media */
 export const gardenStudioEn: GardenStudioContent = {
   metaTitle: "Garden Studio | Casa Portal de la Montaña",
   metaDescription:
@@ -10,7 +9,7 @@ export const gardenStudioEn: GardenStudioContent = {
     subheadline:
       "A private creative space nestled in the garden—designed for focus, restoration, and slower days.",
     ctaText: "Schedule a visit",
-    imageSrc: "/gallery/Portal%20%20%288%29.jpeg",
+    imageSrc: "/gardenstudio/1.jpeg",
   },
   story: {
     title: "Your corner of the garden",
@@ -29,7 +28,7 @@ export const gardenStudioEn: GardenStudioContent = {
   space: {
     title: "The space",
     intro:
-      "Finishes, layout, and media here are placeholders while we prepare dedicated photography and film for this listing.",
+      "A dedicated studio footprint in the garden—natural light, room to work and rest, and the same sanctuary energy as the rest of the property.",
     features: [
       "Dedicated studio footprint in the garden zone",
       "Natural light and proximity to green space",
@@ -37,7 +36,7 @@ export const gardenStudioEn: GardenStudioContent = {
       "Access to shared gardens and community amenities",
       "Optional meals & wellness paths, subject to package",
     ],
-    imageSrc: "/gallery/Portal%20%20%285%29.jpeg",
+    imageSrc: "/gardenstudio/2.jpeg",
   },
   videoSection: {
     title: "Experience the studio",
@@ -45,12 +44,20 @@ export const gardenStudioEn: GardenStudioContent = {
     placeholder: true,
   },
   gallery: {
-    title: "Garden & atmosphere",
+    title: "Garden Studio look",
     images: [
-      { src: "/gallery/Portal%20%20%285%29.jpeg", alt: "Garden greenery" },
-      { src: "/gallery/Portal%20%20%2812%29.jpeg", alt: "Nature immersion" },
-      { src: "/gallery/Portal%20%20%282%29.jpeg", alt: "Mountain light" },
-      { src: "/gallery/Portal%20%20%284%29.jpeg", alt: "Peaceful surroundings" },
+      { src: "/gardenstudio/1.jpeg", alt: "Garden Studio" },
+      { src: "/gardenstudio/2.jpeg", alt: "Garden Studio interior" },
+      { src: "/gardenstudio/3.jpeg", alt: "Garden Studio living area" },
+      { src: "/gardenstudio/4.jpeg", alt: "Garden Studio detail" },
+      { src: "/gardenstudio/5.jpeg", alt: "Garden and greenery" },
+      { src: "/gardenstudio/6.jpeg", alt: "Natural light in the studio" },
+      { src: "/gardenstudio/7.jpeg", alt: "Garden Studio workspace" },
+      { src: "/gardenstudio/8.jpeg", alt: "Peaceful garden setting" },
+      { src: "/gardenstudio/9.jpeg", alt: "Studio atmosphere" },
+      { src: "/gardenstudio/10.jpeg", alt: "Garden Studio views" },
+      { src: "/gardenstudio/11.jpeg", alt: "Outdoor garden space" },
+      { src: "/gardenstudio/12.jpeg", alt: "Garden Studio surroundings" },
     ],
   },
   locationContent: {
