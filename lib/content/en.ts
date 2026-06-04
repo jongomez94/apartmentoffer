@@ -4,7 +4,7 @@ export const en: Content = {
   site: {
     name: "Casa Portal de la Montaña",
     location: "Los Planes de Renderos, San Salvador",
-    whatsappNumber: "18034202923",
+    whatsappNumber: "50366748015",
     whatsappMessage: "Hi, I'm interested in scheduling a visit to Casa Portal de la Montaña.",
   },
   hero: {

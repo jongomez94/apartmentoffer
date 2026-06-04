@@ -1,6 +1,6 @@
 import type { Locale } from "@/lib/i18n/config";
 
-const WHATSAPP_NUMBER = "18034202923";
+const WHATSAPP_NUMBER = "50366748015";
 
 const messages: Record<Locale, string> = {
   en: "Hi, I'm interested in Casa Portal de la Montaña.",
