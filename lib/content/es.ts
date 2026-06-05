@@ -18,7 +18,7 @@ export const es: Content = {
     title: "Un hogar diferente",
     paragraphs: [
       "Un apartamento privado amueblado dentro de un santuario de montaña. Un lugar donde las mañanas son tranquilas, el aire es fresco y la vida fluye a un ritmo más lento e intencional.",
-      "Aquí encontrarás silencio. Silencio real. El tipo que te permite escuchar tus propios pensamientos. La naturaleza te rodea—pájaros al amanecer, brisa fresca de montaña, el aroma de tierra y vegetación.",
+      "Aquí encontrarás silencio. Silencio real. El tipo que te permite escuchar tus propios pensamientos. La naturaleza te rodea, pájaros al amanecer, brisa fresca de montaña, el aroma de tierra y vegetación.",
       "Escapa del ruido de la ciudad sin alejarte de ella. Casa Portal de la Montaña es una comunidad cerrada y segura diseñada para la vida consciente: para la claridad, para la paz, para una forma diferente de ser.",
     ],
     highlights: [
@@ -90,7 +90,7 @@ export const es: Content = {
       period: "/mes",
       features: [
         "Todo en Estadía Independiente",
-        "Desayuno, almuerzo y cena diarios — Cocina Saludable Salvadoreña",
+        "Desayuno, almuerzo y cena diarios. Cocina Saludable Salvadoreña",
         "Ingredientes limpios y de alta calidad, sin aceites de semillas",
         "Acceso VIP a todos los eventos de la propiedad (clases de yoga, ceremonias de cacao, sesiones de meditación, etc.)",
       ],
@@ -122,7 +122,7 @@ export const es: Content = {
   locationContent: {
     title: "Los Planes de Renderos",
     description:
-      "Cerca de San Salvador, pero en otro mundo. Clima más fresco, aire puro y el balance perfecto entre naturaleza y accesibilidad. Estás en las montañas—pero la ciudad está ahí cuando la necesitas.",
+      "Cerca de San Salvador, pero en otro mundo. Clima más fresco, aire puro y el balance perfecto entre naturaleza y accesibilidad. Estás en las montañas, pero la ciudad está ahí cuando la necesitas.",
     coordinates: { lat: 13.633709641672699, lng: -89.17520788607239 },
     mapLinkText: "Ver en Google Maps",
   },

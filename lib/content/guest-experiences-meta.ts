@@ -2,27 +2,21 @@ import type { Locale } from "@/lib/i18n/config";
 
 const copy: Record<
   Locale,
-  { title: string; description: string; heroTitle: string; heroSub: string; intro: string }
+  { title: string; description: string; heroTitle: string; heroSub: string }
 > = {
   en: {
     title: "Guests Experiences",
     description:
-      "Stories from people who stayed at Casa Portal de la Montaña—the apartment, garden studio, and gatherings.",
+      "Reviews and stories from Casa Portal de la Montaña.",
     heroTitle: "Guests Experiences",
-    heroSub:
-      "Real voices from the mountain—short stays, slow weeks, and the details that stayed with them.",
-    intro:
-      "We’re grateful when guests share how this place met them. More stories will appear here as the community grows.",
+    heroSub: "What visitors and guests share about their time here.",
   },
   es: {
     title: "Experiencias de huéspedes",
     description:
-      "Relatos de quienes se hospedaron en Casa Portal de la Montaña—apartamento, estudio del jardín y encuentros.",
+      "Reseñas y relatos de Casa Portal de la Montaña.",
     heroTitle: "Experiencias de huéspedes",
-    heroSub:
-      "Voces reales desde la montaña—estadías cortas, semanas lentas y los detalles que se quedaron.",
-    intro:
-      "Agradecemos cuando comparten cómo este lugar los encontró. Irán sumándose más relatos conforme crece la comunidad.",
+    heroSub: "Lo que visitantes y huéspedes comparten de su estadía.",
   },
 };
 

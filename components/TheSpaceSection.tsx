@@ -24,7 +24,6 @@ export default function TheSpaceSection() {
     <section className="relative overflow-hidden bg-white py-24 md:py-32 lg:py-40">
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-24 lg:items-center">
-          {/* Portal (11) from gallery */}
           <motion.div
             className="relative aspect-[4/3] overflow-hidden rounded-sm bg-stone-200"
             initial={{ opacity: 0, x: -24 }}
@@ -33,7 +32,7 @@ export default function TheSpaceSection() {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
             <Image
-              src={withLifeAtPortalCache("/life-at-the-portal/11.jpeg")}
+              src={withLifeAtPortalCache("/life-at-the-portal/03.jpeg")}
               alt={content.space.title}
               fill
               loading="lazy"

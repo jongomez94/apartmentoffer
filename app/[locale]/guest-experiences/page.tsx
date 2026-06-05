@@ -3,6 +3,7 @@ import { isValidLocale } from "@/lib/i18n/config";
 import type { Locale } from "@/lib/i18n/config";
 import { getGuestStories } from "@/lib/guest-stories";
 import { getGuestExperiencesPageCopy } from "@/lib/content/guest-experiences-meta";
+import { getGooglePlaceReviews } from "@/lib/google-reviews/fetch";
 import GuestExperiencesView from "@/components/guest-experiences/GuestExperiencesView";
 
 /** Read Supabase on every request (Vercel/local), not only at build time. */
@@ -28,7 +29,16 @@ export default async function GuestExperiencesPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const stories = await getGuestStories(locale);
+  const [stories, googleReviews] = await Promise.all([
+    getGuestStories(locale),
+    getGooglePlaceReviews(),
+  ]);
 
-  return <GuestExperiencesView stories={stories} locale={locale as Locale} />;
+  return (
+    <GuestExperiencesView
+      stories={stories}
+      locale={locale as Locale}
+      googleReviews={googleReviews}
+    />
+  );
 }

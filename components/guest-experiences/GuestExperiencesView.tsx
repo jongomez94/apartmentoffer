@@ -6,101 +6,169 @@ import { motion } from "framer-motion";
 import type { GuestStory } from "@/lib/guest-stories";
 import type { Locale } from "@/lib/i18n/config";
 import { paths } from "@/lib/navigation";
+import { PORTAL_GOOGLE_MAPS_URL } from "@/lib/site-location";
 import { getGuestExperiencesPageCopy } from "@/lib/content/guest-experiences-meta";
+import type { GooglePlaceReviewsSummary } from "@/lib/google-reviews/types";
 import { withLifeAtPortalCache } from "@/lib/content/life-at-the-portal";
+
+function Stars({ rating }: { rating: number }) {
+  const full = Math.round(rating);
+  return (
+    <span className="inline-flex gap-0.5 text-amber-500" aria-label={`${rating} out of 5 stars`}>
+      {Array.from({ length: 5 }, (_, i) => (
+        <span key={i} className={i < full ? "opacity-100" : "opacity-25"} aria-hidden>
+          ★
+        </span>
+      ))}
+    </span>
+  );
+}
 
 export default function GuestExperiencesView({
   stories,
   locale,
+  googleReviews,
 }: {
   stories: GuestStory[];
   locale: Locale;
+  googleReviews: GooglePlaceReviewsSummary | null;
 }) {
   const p = paths(locale);
   const copy = getGuestExperiencesPageCopy(locale);
+  const isEs = locale === "es";
+  const hasGoogleReviews = googleReviews && googleReviews.reviews.length > 0;
+  const mapsUrl = googleReviews?.mapsUrl ?? PORTAL_GOOGLE_MAPS_URL;
 
   return (
     <main className="overflow-x-hidden pt-24">
-      <section className="relative overflow-hidden bg-stone-900 py-20 md:py-28">
+      <section className="relative overflow-hidden bg-stone-900 py-16 md:py-20">
         <div className="gradient-hero absolute inset-0" />
         <div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
           <motion.h1
-            className="font-serif text-4xl font-medium text-white md:text-5xl lg:text-6xl"
-            initial={{ opacity: 0, y: 20 }}
+            className="font-serif text-4xl font-medium text-white md:text-5xl"
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
           >
             {copy.heroTitle}
           </motion.h1>
           <motion.p
-            className="mt-6 font-sans text-lg text-white/85 md:text-xl"
-            initial={{ opacity: 0, y: 16 }}
+            className="mt-4 font-sans text-lg text-white/85"
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.12 }}
+            transition={{ delay: 0.1 }}
           >
             {copy.heroSub}
           </motion.p>
+          {!hasGoogleReviews ? (
+            <motion.p className="mt-6" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}>
+              <a
+                href={mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-sans text-sm font-medium text-white/90 underline-offset-4 hover:text-white hover:underline"
+              >
+                {isEs ? "Ver reseñas en Google" : "Read reviews on Google"}
+                <span aria-hidden> →</span>
+              </a>
+            </motion.p>
+          ) : null}
         </div>
       </section>
 
-      <section className="bg-cream py-12 md:py-16">
+      <section className="bg-cream py-14 md:py-20">
         <div className="mx-auto max-w-3xl px-6">
-          <p className="text-center font-sans text-lg text-stone-600">{copy.intro}</p>
-        </div>
-      </section>
-
-      <section className="bg-white py-16 md:py-24">
-        <div className="mx-auto max-w-3xl space-y-16 px-6">
-          {stories.map((story, index) => (
-            <motion.article
-              key={story.id}
-              className="border-b border-stone-200 pb-16 last:border-0 last:pb-0"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05 }}
-            >
-              <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_280px] md:items-start">
-                <div>
-                  <p className="font-sans text-sm font-medium text-sage">{story.subtitle}</p>
-                  <h2 className="mt-2 font-serif text-2xl font-medium text-stone-900 md:text-3xl">
-                    {story.headline}
-                  </h2>
-                  <p className="mt-1 font-serif text-xl text-stone-700">{story.guestName}</p>
-                  {story.staySummary && (
-                    <p className="mt-2 font-sans text-sm text-stone-500">{story.staySummary}</p>
-                  )}
-                  <p className="mt-6 font-sans text-stone-600 leading-relaxed">{story.body}</p>
-                  <time
-                    dateTime={story.publishedAt}
-                    className="mt-4 block font-sans text-xs text-stone-400"
-                  >
-                    {new Intl.DateTimeFormat(locale === "es" ? "es-SV" : "en-US", {
-                      dateStyle: "medium",
-                    }).format(new Date(story.publishedAt))}
-                  </time>
-                </div>
-                {story.imageSrc && (
-                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-stone-200 md:aspect-square md:max-w-[280px] md:justify-self-end">
-                    <Image
-                      src={withLifeAtPortalCache(story.imageSrc)}
-                      alt={story.imageAlt ?? story.headline}
-                      fill
-                      className="object-cover"
-                      sizes="280px"
-                      loading="lazy"
-                    />
-                  </div>
-                )}
+          {hasGoogleReviews ? (
+            <div className="mb-14 border-b border-stone-200 pb-14">
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                <Stars rating={googleReviews.rating} />
+                <span className="font-sans text-sm text-stone-600">
+                  {googleReviews.rating.toFixed(1)}
+                  {googleReviews.totalCount > 0
+                    ? isEs
+                      ? ` · ${googleReviews.totalCount} en Google`
+                      : ` · ${googleReviews.totalCount} on Google`
+                    : null}
+                </span>
               </div>
-            </motion.article>
-          ))}
+              <ul className="mt-8 space-y-6">
+                {googleReviews.reviews.map((review, index) => (
+                  <li
+                    key={`${review.authorName}-${index}`}
+                    className="rounded-sm border border-stone-200 bg-white p-5"
+                  >
+                    <div className="flex flex-wrap items-center gap-2">
+                      <p className="font-sans text-sm font-medium text-stone-900">{review.authorName}</p>
+                      <Stars rating={review.rating} />
+                      {review.relativeTime ? (
+                        <span className="font-sans text-xs text-stone-400">{review.relativeTime}</span>
+                      ) : null}
+                    </div>
+                    <p className="mt-3 font-sans text-sm text-stone-600 leading-relaxed">{review.text}</p>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-6 text-center">
+                <a
+                  href={mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-sans text-sm font-medium text-sage underline-offset-4 hover:underline"
+                >
+                  {isEs ? "Más reseñas en Google" : "More on Google"}
+                  <span aria-hidden> →</span>
+                </a>
+              </p>
+            </div>
+          ) : null}
+
+          {stories.length > 0 ? (
+            <ul className="space-y-12">
+              {stories.map((story, index) => (
+                <motion.li
+                  key={story.id}
+                  className={index < stories.length - 1 ? "border-b border-stone-200 pb-12" : ""}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                >
+                  <article className="grid gap-6 md:grid-cols-[minmax(0,1fr)_240px] md:items-start">
+                    <div>
+                      <p className="font-sans text-sm font-medium text-sage">{story.subtitle}</p>
+                      <h2 className="mt-1 font-serif text-2xl font-medium text-stone-900">{story.headline}</h2>
+                      <p className="mt-1 font-sans text-stone-700">{story.guestName}</p>
+                      {story.staySummary ? (
+                        <p className="mt-1 font-sans text-sm text-stone-500">{story.staySummary}</p>
+                      ) : null}
+                      <p className="mt-4 font-sans text-stone-600 leading-relaxed">{story.body}</p>
+                    </div>
+                    {story.imageSrc ? (
+                      <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-stone-200 md:aspect-square">
+                        <Image
+                          src={withLifeAtPortalCache(story.imageSrc)}
+                          alt={story.imageAlt ?? story.headline}
+                          fill
+                          className="object-cover"
+                          sizes="240px"
+                          loading="lazy"
+                        />
+                      </div>
+                    ) : null}
+                  </article>
+                </motion.li>
+              ))}
+            </ul>
+          ) : !hasGoogleReviews ? (
+            <p className="text-center font-sans text-stone-600">
+              {isEs ? "Pronto habrá más relatos aquí." : "More stories coming soon."}
+            </p>
+          ) : null}
         </div>
       </section>
 
-      <section className="border-t border-stone-200 bg-cream py-10" aria-label="Navigation">
+      <section className="border-t border-stone-200 bg-white py-8">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <Link href={p.home} className="font-sans text-sm text-sage hover:underline">
-            ← {locale === "es" ? "Volver al inicio del portal" : "Back to portal home"}
+            ← {isEs ? "Volver al inicio" : "Back to home"}
           </Link>
         </div>
       </section>

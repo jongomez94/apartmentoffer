@@ -18,7 +18,7 @@ export const en: Content = {
     title: "A different kind of home",
     paragraphs: [
       "A peaceful fully furnished private apartment inside a mountain sanctuary. A place where mornings are quiet, the air is fresh, and life moves at a slower, more intentional pace.",
-      "Here you'll find silence. Real silence. The kind that lets you hear your own thoughts. Nature wraps around you—birds at dawn, cool mountain breeze, the scent of earth and greenery.",
+      "Here you'll find silence. Real silence. The kind that lets you hear your own thoughts. Nature wraps around you, birds at dawn, cool mountain breeze, the scent of earth and greenery.",
       "Escape the city noise without leaving the city behind. Casa Portal de la Montaña is a safe, gated community designed for conscious living: for clarity, for peace, for a different way of being.",
     ],
     highlights: [
@@ -86,7 +86,7 @@ export const en: Content = {
       period: "/month",
       features: [
         "Everything in Independent Stay",
-        "Daily breakfast, lunch, and dinner — Salvadoran Healthy Cuisine",
+        "Daily breakfast, lunch, and dinner. Salvadoran Healthy Cuisine",
         "Clean, high-quality ingredients, no seed oils",
         "VIP Access to all property events (Yoga classes, Cacao Ceremonies, Meditation Sessions, etc.)",
       ],
@@ -118,7 +118,7 @@ export const en: Content = {
   locationContent: {
     title: "Los Planes de Renderos",
     description:
-      "Close to San Salvador, yet worlds apart. Cooler climate, fresh air, and the perfect balance between nature and accessibility. You're in the mountains—but the city is there when you need it.",
+      "Close to San Salvador, yet worlds apart. Cooler climate, fresh air, and the perfect balance between nature and accessibility. You're in the mountains, but the city is there when you need it.",
     coordinates: { lat: 13.633709641672699, lng: -89.17520788607239 },
     mapLinkText: "View on Google Maps",
   },

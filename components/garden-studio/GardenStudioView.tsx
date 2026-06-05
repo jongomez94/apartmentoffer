@@ -38,7 +38,7 @@ export default function GardenStudioView({
             src={withGardenStudioCache(content.hero.imageSrc)}
             alt={content.hero.headline}
             fill
-            className="object-cover"
+            className="object-cover object-[center_85%]"
             sizes="100vw"
             priority
           />

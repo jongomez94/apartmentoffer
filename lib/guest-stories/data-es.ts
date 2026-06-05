@@ -7,7 +7,7 @@ export const guestStoriesEs: GuestStory[] = [
     guestName: "Alex M.",
     subtitle: "Nómada digital · Apartamento en la montaña",
     headline: "La primera semana cambió cómo trabajo",
-    body: "Vine por el silencio y buen internet, y me quedé por el aire de montaña. Las mañanas en la terraza ganan a cualquier ruido de coworking. La comunidad está ahí sin invadir—justo lo que necesitaba para terminar un proyecto difícil.",
+    body: "Vine por el silencio y buen internet, y me quedé por el aire de montaña. Las mañanas en la terraza ganan a cualquier ruido de coworking. La comunidad está ahí sin invadir, justo lo que necesitaba para terminar un proyecto difícil.",
     experienceTypes: ["apartment"],
     staySummary: "3 semanas · Estadía independiente",
     imageSrc: "/life-at-the-portal/03.jpeg",

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     template: "%s · Casa Portal de la Montaña",
   },
   description:
-    "Holistic mountain sanctuary in Los Planes de Renderos—wellness, nature, and conscious living near San Salvador.",
+    "Holistic mountain sanctuary in Los Planes de Renderos. Wellness, nature, and conscious living near San Salvador.",
 };
 
 export default async function LocaleLayout({

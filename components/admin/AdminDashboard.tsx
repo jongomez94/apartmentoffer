@@ -307,7 +307,7 @@ export default function AdminDashboard({
                         <td className="px-3 py-2 font-medium text-stone-900">{ev.title}</td>
                         <td className="px-3 py-2 text-stone-600">{ev.slug}</td>
                         <td className="px-3 py-2 text-stone-600">{ev.locale}</td>
-                        <td className="px-3 py-2 text-stone-600">{ev.is_published ? "✓" : "—"}</td>
+                        <td className="px-3 py-2 text-stone-600">{ev.is_published ? "✓" : "-"}</td>
                         <td className="px-3 py-2 text-right">
                           <button type="button" className="text-sage hover:underline" onClick={() => loadEvent(ev)}>
                             {locale === "es" ? "Editar" : "Edit"}
@@ -476,7 +476,7 @@ export default function AdminDashboard({
                         <td className="px-3 py-2 font-medium text-stone-900">{s.headline}</td>
                         <td className="px-3 py-2 text-stone-600">{s.slug}</td>
                         <td className="px-3 py-2 text-stone-600">{s.locale}</td>
-                        <td className="px-3 py-2 text-stone-600">{s.is_published ? "✓" : "—"}</td>
+                        <td className="px-3 py-2 text-stone-600">{s.is_published ? "✓" : "-"}</td>
                         <td className="px-3 py-2 text-right">
                           <button type="button" className="text-sage hover:underline" onClick={() => loadStory(s)}>
                             {locale === "es" ? "Editar" : "Edit"}

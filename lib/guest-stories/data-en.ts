@@ -7,7 +7,7 @@ export const guestStoriesEn: GuestStory[] = [
     guestName: "Alex M.",
     subtitle: "Remote worker · Mountain apartment",
     headline: "The first week rewired how I work",
-    body: "I came for quiet and fast internet, and stayed for the mountain air. Mornings on the terrace beat any coworking noise. The community is present without being intrusive—exactly what I needed to finish a hard project.",
+    body: "I came for quiet and fast internet, and stayed for the mountain air. Mornings on the terrace beat any coworking noise. The community is present without being intrusive, exactly what I needed to finish a hard project.",
     experienceTypes: ["apartment"],
     staySummary: "3 weeks · Independent stay",
     imageSrc: "/life-at-the-portal/03.jpeg",

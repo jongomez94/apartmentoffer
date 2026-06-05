@@ -1,5 +1,5 @@
 /**
- * Guest experience story — structured for static data now and Supabase later.
+ * Guest experience story. Structured for static data now and Supabase later.
  * A future `guest_stories` table could map 1:1 to this shape (snake_case columns).
  */
 export type GuestStory = {
@@ -11,12 +11,12 @@ export type GuestStory = {
   subtitle: string;
   headline: string;
   body: string;
-  /** Which offering(s) — useful for filters when you add DB */
+  /** Which offering(s). Useful for filters when you add DB */
   experienceTypes: Array<"apartment" | "garden_studio" | "events" | "general">;
   /** Optional stay context */
   staySummary?: string;
   imageSrc?: string;
   imageAlt?: string;
-  /** ISO date string — aligns with DB `published_at` */
+  /** ISO date string. Aligns with DB `published_at` */
   publishedAt: string;
 };

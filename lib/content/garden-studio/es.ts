@@ -3,19 +3,19 @@ import type { GardenStudioContent } from "./types";
 export const gardenStudioEs: GardenStudioContent = {
   metaTitle: "Estudio del Jardín | Casa Portal de la Montaña",
   metaDescription:
-    "Un retiro creativo en el jardín de Casa Portal de la Montaña—trabajo enfocado, descanso e inmersión en la naturaleza.",
+    "Un retiro creativo en el jardín de Casa Portal de la Montaña para trabajo enfocado, descanso e inmersión en la naturaleza.",
   hero: {
     headline: "Estudio del Jardín",
     subheadline:
-      "Un espacio creativo privado en el jardín—pensado para concentrarte, restaurarte y vivir días más lentos.",
+      "Un espacio creativo privado en el jardín. Pensado para concentrarte, restaurarte y vivir días más lentos.",
     ctaText: "Agendar visita",
     imageSrc: "/gardenstudio/1.jpeg",
   },
   story: {
     title: "Tu rincón en el jardín",
     paragraphs: [
-      "El Estudio del Jardín se ofrece con la misma filosofía que nuestro apartamento en la montaña: vida consciente, entorno cuidado y espacio para pensar con claridad. Es un espacio distinto—más cerca de la tierra, de la luz entre las hojas y del ritmo tranquilo del exterior.",
-      "Ideal para viajeros en solitario, creativos o quienes buscan una huella más pequeña con la misma energía de santuario. Detalles, precios y disponibilidad se ajustan a tu estadía—escríbenos y te contamos el siguiente capítulo.",
+      "El Estudio del Jardín se ofrece con la misma filosofía que nuestro apartamento en la montaña: vida consciente, entorno cuidado y espacio para pensar con claridad. Es un espacio distinto, más cerca de la tierra, de la luz entre las hojas y del ritmo tranquilo del exterior.",
+      "Ideal para viajeros en solitario, creativos o quienes buscan una huella más pequeña con la misma energía de santuario. Detalles, precios y disponibilidad se ajustan a tu estadía. Escríbenos y te contamos el siguiente capítulo.",
     ],
     highlights: [
       "Inmersión en el jardín",
@@ -28,7 +28,7 @@ export const gardenStudioEs: GardenStudioContent = {
   space: {
     title: "El espacio",
     intro:
-      "Un estudio dedicado en el jardín—luz natural, espacio para trabajar y descansar, y la misma energía de santuario que el resto de la propiedad.",
+      "Un estudio dedicado en el jardín con luz natural, espacio para trabajar y descansar, y la misma energía de santuario que el resto de la propiedad.",
     features: [
       "Estudio dedicado en la zona del jardín",
       "Luz natural y cercanía al verde",
@@ -63,7 +63,7 @@ export const gardenStudioEs: GardenStudioContent = {
   locationContent: {
     title: "Los Planes de Renderos",
     description:
-      "Parte de Casa Portal de la Montaña—el mismo aire de montaña, la misma comunidad, otro ángulo del terreno.",
+      "Parte de Casa Portal de la Montaña, el mismo aire de montaña, la misma comunidad, otro ángulo del terreno.",
     coordinates: { lat: 13.633709641672699, lng: -89.17520788607239 },
     mapLinkText: "Ver en Google Maps",
   },

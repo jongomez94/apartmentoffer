@@ -7,7 +7,7 @@ export const eventsEn: EventsContent = {
   hero: {
     headline: "Events at the portal",
     subheadline:
-      "Gatherings that match the mountain—practice, ritual, music, and shared meals in a conscious community.",
+      "Gatherings that match the mountain: practice, ritual, music, and shared meals in a conscious community.",
   },
   intro: {
     title: "Rhythm of the land",
@@ -19,27 +19,27 @@ export const eventsEn: EventsContent = {
   upcoming: {
     title: "Upcoming highlights",
     emptyMessage:
-      "New dates are added regularly—message us to hear what’s next or to join the community list.",
+      "New dates are added regularly, message us to hear what’s next or to join the community list.",
     events: [
       {
         title: "Community morning yoga",
         date: "Saturdays · 7:00 a.m.",
         description:
-          "Gentle flow and breathwork to open the day—open to residents and invited guests by arrangement.",
+          "Gentle flow and breathwork to open the day, open to residents and invited guests by arrangement.",
         tag: "Wellness",
       },
       {
         title: "Cacao & intention circle",
         date: "Monthly · evenings",
         description:
-          "A seated circle with ceremonial cacao, sharing, and quiet—dates rotate with the lunar calendar.",
+          "A seated circle with ceremonial cacao, sharing, and quiet. Dates rotate with the lunar calendar.",
         tag: "Ritual",
       },
       {
         title: "Meditation & silence",
         date: "Weekly",
         description:
-          "Guided or silent sits in the garden or studio space—check the week’s board on site.",
+          "Guided or silent sits in the garden or studio space, check the week’s board on site.",
         tag: "Stillness",
       },
     ],
