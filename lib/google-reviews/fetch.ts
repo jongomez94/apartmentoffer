@@ -1,5 +1,7 @@
 import { unstable_cache } from "next/cache";
+import type { Locale } from "@/lib/i18n/config";
 import { PORTAL_COORDINATES, PORTAL_GOOGLE_MAPS_URL } from "@/lib/site-location";
+import { getHardcodedGoogleReviews } from "./hardcoded-reviews";
 import type { GooglePlaceReview, GooglePlaceReviewsSummary } from "./types";
 
 const PLACE_SEARCH_QUERY = "Casa Portal de la Montaña Los Planes de Renderos";
@@ -103,3 +105,12 @@ export const getGooglePlaceReviews = unstable_cache(
   ["google-place-reviews"],
   { revalidate: 86400 },
 );
+
+/** Live API when configured; otherwise hardcoded reviews from Google. */
+export async function getGooglePlaceReviewsForDisplay(
+  locale: Locale,
+): Promise<GooglePlaceReviewsSummary> {
+  const live = await getGooglePlaceReviews();
+  if (live?.reviews.length) return live;
+  return getHardcodedGoogleReviews(locale);
+}
