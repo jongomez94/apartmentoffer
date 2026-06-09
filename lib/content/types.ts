@@ -27,6 +27,8 @@ export type Content = {
     subheadline: string;
     ctaText: string;
     videoSrc: string;
+    imageSrc?: string;
+    imageObjectPosition?: string;
   };
   lifestyle: {
     title: string;
@@ -37,6 +39,8 @@ export type Content = {
     title: string;
     intro: string;
     features: string[];
+    imageSrc?: string;
+    imageObjectPosition?: string;
   };
   dailyExperience: {
     title: string;
@@ -54,7 +58,7 @@ export type Content = {
   videoSection: {
     title: string;
     videoUrl: string;
-    placeholder: boolean;
+    placeholder?: boolean;
   };
   locationContent: {
     title: string;

@@ -38,6 +38,33 @@ export const gardenStudioEn: GardenStudioContent = {
     ],
     imageSrc: "/gardenstudio/12.jpeg",
   },
+  dailyExperience: {
+    title: "A day in the garden studio",
+    morning: {
+      title: "Morning",
+      description:
+        "Light through the leaves, birds nearby, and the quiet start of a day close to the soil.",
+    },
+    midday: {
+      title: "Midday",
+      description:
+        "Focused work or rest with garden views. The studio stays cool and calm while you settle in.",
+    },
+    evening: {
+      title: "Evening",
+      description:
+        "Soft light in the garden, still air, and a natural pause before the night.",
+    },
+  },
+  amenitiesTitle: "What's included",
+  amenities: [
+    { title: "Utilities included", icon: "utilities" },
+    { title: "Weekly cleaning", icon: "cleaning" },
+    { title: "Safe gated community", icon: "security" },
+    { title: "Garden access", icon: "park" },
+    { title: "Nature immersion", icon: "nature" },
+    { title: "Optional healthy meals", icon: "meals" },
+  ],
   videoSection: {
     title: "Experience the studio",
     videoUrl: "",

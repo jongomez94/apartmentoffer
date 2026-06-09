@@ -36,8 +36,35 @@ export const gardenStudioEs: GardenStudioContent = {
       "Acceso a jardines y amenidades comunitarias",
       "Comidas opcionales y rutas wellness, según paquete",
     ],
-    imageSrc: "/gardenstudio/2.jpeg",
+    imageSrc: "/gardenstudio/12.jpeg",
   },
+  dailyExperience: {
+    title: "Un día en el estudio del jardín",
+    morning: {
+      title: "Mañana",
+      description:
+        "Luz entre las hojas, pájaros cerca y el inicio tranquilo de un día junto a la tierra.",
+    },
+    midday: {
+      title: "Mediodía",
+      description:
+        "Trabajo enfocado o descanso con vistas al jardín. El estudio se mantiene fresco y calmado.",
+    },
+    evening: {
+      title: "Noche",
+      description:
+        "Luz suave en el jardín, aire quieto y una pausa natural antes de la noche.",
+    },
+  },
+  amenitiesTitle: "Qué incluye",
+  amenities: [
+    { title: "Servicios incluidos", icon: "utilities" },
+    { title: "Limpieza semanal", icon: "cleaning" },
+    { title: "Comunidad cerrada y segura", icon: "security" },
+    { title: "Acceso al jardín", icon: "park" },
+    { title: "Inmersión en la naturaleza", icon: "nature" },
+    { title: "Comidas saludables opcionales", icon: "meals" },
+  ],
   videoSection: {
     title: "Vive el estudio",
     videoUrl: "",

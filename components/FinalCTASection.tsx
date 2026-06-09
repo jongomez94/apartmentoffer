@@ -11,7 +11,7 @@ export default function FinalCTASection() {
   return (
     <section
       id="final-cta"
-      className="relative overflow-hidden bg-stone-900 py-24 md:py-32 lg:py-40"
+      className="relative overflow-hidden bg-calmGreen py-24 md:py-32 lg:py-40"
     >
       <div className="mx-auto max-w-3xl px-6 text-center">
         <motion.div

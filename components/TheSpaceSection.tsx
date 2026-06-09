@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useContent } from "@/context/ContentContext";
-import { withLifeAtPortalCache } from "@/lib/content/life-at-the-portal";
+import { withStaticImageCache } from "@/lib/content/static-image-cache";
 
 const container = {
   hidden: { opacity: 0 },
@@ -20,6 +20,9 @@ const item = {
 
 export default function TheSpaceSection() {
   const { content } = useContent();
+  const spaceImage = content.space.imageSrc ?? "/life-at-the-portal/03.jpeg";
+  const spaceImagePosition = content.space.imageObjectPosition;
+
   return (
     <section className="relative overflow-hidden bg-white py-24 md:py-32 lg:py-40">
       <div className="mx-auto max-w-6xl px-6">
@@ -32,11 +35,12 @@ export default function TheSpaceSection() {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
             <Image
-              src={withLifeAtPortalCache("/life-at-the-portal/03.jpeg")}
+              src={withStaticImageCache(spaceImage)}
               alt={content.space.title}
               fill
               loading="lazy"
               className="object-cover"
+              style={spaceImagePosition ? { objectPosition: spaceImagePosition } : undefined}
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </motion.div>

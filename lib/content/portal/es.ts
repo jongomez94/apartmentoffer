@@ -45,7 +45,7 @@ export const portalHomeEs: PortalHomeContent = {
     cards: [
       {
         key: "apartment",
-        title: "Apartamento en la montaña",
+        title: "Apartamento elevado",
         description:
           "Apartamento privado amueblado para estadías más largas, con vistas a la montaña, opciones wellness y acceso a la vida comunitaria.",
         cta: "Ver apartamento",

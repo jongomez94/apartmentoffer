@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useContent } from "@/context/ContentContext";
+import { withStaticImageCache } from "@/lib/content/static-image-cache";
 
 const scrollToContact = () => {
   document.getElementById("final-cta")?.scrollIntoView({ behavior: "smooth" });
@@ -10,11 +12,12 @@ const scrollToContact = () => {
 
 export default function HeroSection() {
   const { content } = useContent();
-  const [videoReady, setVideoReady] = useState(false);
+  const [mediaReady, setMediaReady] = useState(false);
+  const heroImage = content.hero.imageSrc;
 
   useEffect(() => {
-    setVideoReady(false);
-  }, [content.hero.videoSrc]);
+    setMediaReady(false);
+  }, [content.hero.videoSrc, heroImage]);
 
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 600], [0, 120]);
@@ -30,21 +33,35 @@ export default function HeroSection() {
           <motion.div
             className="absolute inset-0 h-full w-full"
             initial={false}
-            animate={{ opacity: videoReady ? 1 : 0 }}
+            animate={{ opacity: mediaReady ? 1 : 0 }}
             transition={{ duration: 1.25, ease: [0.22, 1, 0.36, 1] }}
           >
-            <video
-              key={content.hero.videoSrc}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              className="h-full w-full object-cover"
-              src={content.hero.videoSrc}
-              aria-hidden
-              onLoadedData={() => setVideoReady(true)}
-            />
+            {heroImage ? (
+              <Image
+                key={heroImage}
+                src={withStaticImageCache(heroImage)}
+                alt=""
+                fill
+                priority
+                className="object-cover"
+                style={{ objectPosition: content.hero.imageObjectPosition ?? "center center" }}
+                sizes="100vw"
+                onLoad={() => setMediaReady(true)}
+              />
+            ) : (
+              <video
+                key={content.hero.videoSrc}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+                className="h-full w-full object-cover"
+                src={content.hero.videoSrc}
+                aria-hidden
+                onLoadedData={() => setMediaReady(true)}
+              />
+            )}
           </motion.div>
         </motion.div>
       </div>
@@ -79,9 +96,7 @@ export default function HeroSection() {
             className="group inline-flex items-center gap-2 rounded-sm border border-white/80 bg-white/10 px-8 py-4 font-sans text-sm font-medium uppercase tracking-[0.2em] text-white backdrop-blur-sm transition-all hover:bg-white hover:text-stone-900 focus:outline-none focus:ring-2 focus:ring-white/50"
           >
             {content.hero.ctaText}
-            <span className="transition-transform group-hover:translate-x-1">
-              →
-            </span>
+            <span className="transition-transform group-hover:translate-x-1">→</span>
           </button>
         </motion.div>
       </div>
@@ -97,9 +112,7 @@ export default function HeroSection() {
           className="flex flex-col items-center gap-2 text-white/70 transition-colors hover:text-white"
           aria-label="Scroll to content"
         >
-          <span className="font-sans text-xs uppercase tracking-widest">
-            {content.scrollLabel}
-          </span>
+          <span className="font-sans text-xs uppercase tracking-widest">{content.scrollLabel}</span>
           <span className="block h-8 w-px bg-white/50" />
         </a>
       </motion.div>

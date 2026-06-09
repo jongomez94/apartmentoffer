@@ -22,6 +22,7 @@ const config: Config = {
         sand: "#e8e4df",
         sage: "#4a5d4a",
         olive: "#3d4f3d",
+        calmGreen: "#5a6b57",
       },
       animation: {
         "fade-in": "fadeIn 1s ease-out forwards",

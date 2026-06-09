@@ -45,7 +45,7 @@ export const portalHomeEn: PortalHomeContent = {
     cards: [
       {
         key: "apartment",
-        title: "Mountain apartment",
+        title: "Elevated apartment",
         description:
           "A fully furnished private apartment for longer stays, with mountain views, wellness options, and access to community life.",
         cta: "View apartment",

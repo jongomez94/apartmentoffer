@@ -133,7 +133,7 @@ export default function EventsView({
         </div>
       </section>
 
-      <section className="bg-stone-900 py-24">
+      <section className="bg-calmGreen py-24">
         <div className="mx-auto max-w-2xl px-6 text-center">
           <h2 className="font-serif text-3xl text-white">{content.join.title}</h2>
           <p className="mt-4 font-sans text-white/80">{content.join.paragraph}</p>

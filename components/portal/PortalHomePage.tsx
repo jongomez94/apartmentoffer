@@ -7,6 +7,7 @@ import type { PortalHomeContent } from "@/lib/content/portal";
 import type { Locale } from "@/lib/i18n/config";
 import { paths } from "@/lib/navigation";
 import { getWhatsAppUrl } from "@/lib/whatsapp-defaults";
+import { googleMapsUrl } from "@/lib/site-location";
 
 const container = {
   hidden: { opacity: 0 },
@@ -281,7 +282,7 @@ export default function PortalHomePage({ content, locale }: Props) {
               {content.location.description}
             </p>
             <a
-              href={`https://www.google.com/maps?q=${content.location.coordinates.lat},${content.location.coordinates.lng}`}
+              href={googleMapsUrl(content.location.coordinates)}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 font-sans text-sm font-medium text-sage underline-offset-4 hover:underline"
@@ -295,7 +296,7 @@ export default function PortalHomePage({ content, locale }: Props) {
 
       <section
         id="final-cta"
-        className="relative overflow-hidden bg-stone-900 py-24 md:py-32 lg:py-40"
+        className="relative overflow-hidden bg-calmGreen py-24 md:py-32 lg:py-40"
       >
         <div className="mx-auto max-w-3xl px-6 text-center">
           <motion.div

@@ -20,6 +20,14 @@ export type GardenStudioContent = {
     features: string[];
     imageSrc: string;
   };
+  dailyExperience: {
+    title: string;
+    morning: { title: string; description: string };
+    midday: { title: string; description: string };
+    evening: { title: string; description: string };
+  };
+  amenitiesTitle: string;
+  amenities: Array<{ title: string; icon: string }>;
   videoSection: {
     title: string;
     videoUrl: string;
