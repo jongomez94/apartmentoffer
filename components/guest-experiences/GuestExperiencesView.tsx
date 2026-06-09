@@ -41,8 +41,8 @@ export default function GuestExperiencesView({
 
   return (
     <main className="overflow-x-hidden pt-24">
-      <section className="relative overflow-hidden bg-stone-900 py-16 md:py-20">
-        <div className="gradient-hero absolute inset-0" />
+      <section className="relative overflow-hidden bg-trustBlue py-16 md:py-20">
+        <div className="gradient-hero-trust absolute inset-0" />
         <div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
           <motion.h1
             className="font-serif text-4xl font-medium text-white md:text-5xl"

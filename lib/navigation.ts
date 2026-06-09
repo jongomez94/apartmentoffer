@@ -11,14 +11,14 @@ export type NavLabels = {
 export const navLabels: Record<Locale, NavLabels> = {
   en: {
     home: "Home",
-    apartment: "Apartment",
+    apartment: "Elevated apartment",
     gardenStudio: "Garden Studio",
     events: "Events",
     guestExperiences: "Guests Experiences",
   },
   es: {
     home: "Inicio",
-    apartment: "Apartamento",
+    apartment: "Apartamento elevado",
     gardenStudio: "Estudio del Jardín",
     events: "Eventos",
     guestExperiences: "Experiencias de huéspedes",

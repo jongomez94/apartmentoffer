@@ -23,6 +23,7 @@ const config: Config = {
         sage: "#4a5d4a",
         olive: "#3d4f3d",
         calmGreen: "#5a6b57",
+        trustBlue: "#3d5670",
       },
       animation: {
         "fade-in": "fadeIn 1s ease-out forwards",
