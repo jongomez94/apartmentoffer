@@ -8,6 +8,7 @@ import type { Locale } from "@/lib/i18n/config";
 import { paths } from "@/lib/navigation";
 import { getWhatsAppUrl } from "@/lib/whatsapp-defaults";
 import { withGardenStudioCache } from "@/lib/content/garden-studio-assets";
+import PricingCards from "@/components/PricingCards";
 import { googleMapsUrl, PORTAL_COORDINATES } from "@/lib/site-location";
 
 const container = {
@@ -38,7 +39,7 @@ export default function GardenStudioView({
             src={withGardenStudioCache(content.hero.imageSrc)}
             alt={content.hero.headline}
             fill
-            className="object-cover object-[center_85%]"
+            className="object-cover object-[center_70%]"
             sizes="100vw"
             priority
           />
@@ -139,6 +140,8 @@ export default function GardenStudioView({
           </motion.div>
         </div>
       </section>
+
+      <PricingCards pricing={content.pricing} />
 
       <section className="bg-black">
         <div className="mx-auto max-w-5xl px-6 py-24">

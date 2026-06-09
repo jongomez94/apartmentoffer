@@ -1,3 +1,20 @@
+export type PricingContent = {
+  title: string;
+  popularLabel: string;
+  option1: {
+    name: string;
+    price: string;
+    period: string;
+    features: string[];
+  };
+  option2: {
+    name: string;
+    price: string;
+    period: string;
+    features: string[];
+  };
+};
+
 export type Content = {
   site: {
     name: string;
@@ -29,22 +46,7 @@ export type Content = {
   };
   amenitiesTitle: string;
   amenities: Array<{ title: string; icon: string }>;
-  pricing: {
-    title: string;
-    popularLabel: string;
-    option1: {
-      name: string;
-      price: string;
-      period: string;
-      features: string[];
-    };
-    option2: {
-      name: string;
-      price: string;
-      period: string;
-      features: string[];
-    };
-  };
+  pricing: PricingContent;
   gallery: {
     title: string;
     images: Array<{ src: string; alt: string }>;

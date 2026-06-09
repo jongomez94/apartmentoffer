@@ -43,6 +43,32 @@ export const gardenStudioEs: GardenStudioContent = {
     videoUrl: "",
     placeholder: true,
   },
+  pricing: {
+    title: "Elige tu estadía",
+    popularLabel: "Más popular",
+    option1: {
+      name: "Estadía Independiente",
+      price: "$750",
+      period: "/mes",
+      features: [
+        "Estudio privado en el jardín",
+        "Servicios incluidos",
+        "Limpieza semanal",
+        "Acceso a jardines compartidos",
+      ],
+    },
+    option2: {
+      name: "Vida Wellness",
+      price: "$1,000",
+      period: "/mes",
+      features: [
+        "Todo en Estadía Independiente",
+        "Desayuno, almuerzo y cena diarios. Cocina Saludable Salvadoreña",
+        "Ingredientes limpios y de alta calidad, sin aceites de semillas",
+        "Acceso VIP a todos los eventos de la propiedad (clases de yoga, ceremonias de cacao, sesiones de meditación, etc.)",
+      ],
+    },
+  },
   gallery: {
     title: "Garden Studio look",
     images: [

@@ -1,3 +1,5 @@
+import type { PricingContent } from "@/lib/content/types";
+
 export type GardenStudioContent = {
   metaTitle: string;
   metaDescription: string;
@@ -27,6 +29,7 @@ export type GardenStudioContent = {
     title: string;
     images: Array<{ src: string; alt: string }>;
   };
+  pricing: PricingContent;
   locationContent: {
     title: string;
     description: string;

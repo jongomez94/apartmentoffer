@@ -36,12 +36,38 @@ export const gardenStudioEn: GardenStudioContent = {
       "Access to shared gardens and community amenities",
       "Optional meals & wellness paths, subject to package",
     ],
-    imageSrc: "/gardenstudio/2.jpeg",
+    imageSrc: "/gardenstudio/12.jpeg",
   },
   videoSection: {
     title: "Experience the studio",
     videoUrl: "",
     placeholder: true,
+  },
+  pricing: {
+    title: "Choose your stay",
+    popularLabel: "Most popular",
+    option1: {
+      name: "Independent Stay",
+      price: "$750",
+      period: "/month",
+      features: [
+        "Private garden studio",
+        "Utilities included",
+        "Weekly cleaning",
+        "Access to shared gardens",
+      ],
+    },
+    option2: {
+      name: "Wellness Living",
+      price: "$1,000",
+      period: "/month",
+      features: [
+        "Everything in Independent Stay",
+        "Daily breakfast, lunch, and dinner. Salvadoran Healthy Cuisine",
+        "Clean, high-quality ingredients, no seed oils",
+        "VIP Access to all property events (Yoga classes, Cacao Ceremonies, Meditation Sessions, etc.)",
+      ],
+    },
   },
   gallery: {
     title: "Garden Studio look",

@@ -76,13 +76,13 @@ export const en: Content = {
     popularLabel: "Most popular",
     option1: {
       name: "Independent Stay",
-      price: "$1,250",
+      price: "$1,000",
       period: "/month",
       features: ["Furnished apartment", "Utilities included", "Weekly cleaning"],
     },
     option2: {
       name: "Wellness Living",
-      price: "$1,550",
+      price: "$1,250",
       period: "/month",
       features: [
         "Everything in Independent Stay",

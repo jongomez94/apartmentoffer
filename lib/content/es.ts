@@ -76,7 +76,7 @@ export const es: Content = {
     popularLabel: "Más popular",
     option1: {
       name: "Estadía Independiente",
-      price: "$1,250",
+      price: "$1,000",
       period: "/mes",
       features: [
         "Apartamento amueblado",
@@ -86,7 +86,7 @@ export const es: Content = {
     },
     option2: {
       name: "Vida Wellness",
-      price: "$1,550",
+      price: "$1,250",
       period: "/mes",
       features: [
         "Todo en Estadía Independiente",
