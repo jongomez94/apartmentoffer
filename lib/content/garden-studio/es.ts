@@ -67,8 +67,8 @@ export const gardenStudioEs: GardenStudioContent = {
   ],
   videoSection: {
     title: "Vive el estudio",
-    videoUrl: "",
-    placeholder: true,
+    videoUrl: "/gardenstudio/Garden%20Studio.mp4",
+    placeholder: false,
   },
   pricing: {
     title: "Elige tu estadía",
